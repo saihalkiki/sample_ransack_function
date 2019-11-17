@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @q = Event.ransack(params[:q])
+    @events = @q.result(distinct: true)
   end
 
   # GET /events/1
@@ -65,6 +66,10 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def valid_datetime
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
