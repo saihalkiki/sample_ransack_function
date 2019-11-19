@@ -8,6 +8,8 @@ class EventsController < ApplicationController
     @events = @q.result(distinct: true)
   end
 
+
+
   # GET /events/1
   # GET /events/1.json
   def show
